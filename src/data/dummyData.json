@@ -1,0 +1,9 @@
+[
+    {
+        "id": "welcome-note",
+        "title": "Welcome to NoteNest!",
+        "desc": "📌 Click + to add a note.\n📝 You can use emojis, and choose footer colors.\n🔧 Tap the 3-dot menu to edit, delete, or archive.\n🧹 Use this app to stay organized!",
+        "emoji": "📒",
+        "footerColor": "#e0f7fa"
+    }
+]

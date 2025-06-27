@@ -2,7 +2,7 @@
 // ✅ src/pages/Foreground.jsx
 import React, { useRef, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import Card from '../components/Card';
+import Card from '../Components/Card';
 import AddNoteModal from '../features/notes/AddNoteModal';
 import Footer from '../Components/Footer';
 
@@ -12,10 +12,12 @@ function Foreground() {
     const [showModal, setShowModal] = useState(false);
     const [showArchived, setShowArchived] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
+    const [isDarkMode, setIsDarkMode] = useState(true);
 
     useEffect(() => {
         const saved = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', saved);
+        setIsDarkMode(saved === 'dark');
     }, []);
 
     const toggleTheme = () => {
@@ -23,6 +25,7 @@ function Foreground() {
         const newTheme = current === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
+        setIsDarkMode(newTheme === 'dark');
     };
 
     const filteredNotes = notes
@@ -47,6 +50,7 @@ function Foreground() {
                 toggleTheme={toggleTheme}
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
+                isDarkMode={isDarkMode}
             />
 
             <AddNoteModal isOpen={showModal} onClose={() => setShowModal(false)} />

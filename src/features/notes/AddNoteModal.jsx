@@ -74,18 +74,34 @@ function AddNoteModal({ isOpen, onClose, isEditMode = false, existingNote = null
             onClick={handleBackdropClick}
             className="fixed inset-0 bg-black/30 backdrop-blur-sm flex justify-center items-center z-50"
         >
-            <div className="relative bg-white p-6 rounded-2xl shadow-2xl w-[90%] max-w-xl border border-gray-200">
-
+            <div
+                className="
+                    relative 
+                    bg-white 
+                    p-6 
+                    rounded-2xl 
+                    shadow-2xl 
+                    w-[90%] 
+                    md:w-[800px] 
+                    lg:w-[1000px] 
+                    xl:w-[1400px] 
+                    h-auto 
+                    xl:h-[700px] 
+                    max-h-[90vh] 
+                    overflow-y-auto 
+                    border border-gray-200
+                "
+            >
                 {/* Close Button */}
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-black rounded-full p-2 text-xl transition"
+                    className="absolute top-4 right-4 bg-red-100 text-red-600 hover:bg-red-200 hover:text-red-800 rounded-full p-2 text-xl transition duration-200"
                     aria-label="Close"
                 >
                     &times;
                 </button>
 
-                <h2 className="text-3xl font-semibold mb-6 text-center text-gray-800">
+                <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-center text-gray-800">
                     {isEditMode ? "Edit Note" : "Add New Note"}
                 </h2>
 
@@ -100,7 +116,7 @@ function AddNoteModal({ isOpen, onClose, isEditMode = false, existingNote = null
 
                 <textarea
                     placeholder="Description"
-                    className="textarea textarea-bordered w-full mb-4"
+                    className="textarea textarea-bordered w-full lg:h-85 mb-4"
                     value={desc}
                     onChange={(e) => setDesc(e.target.value)}
                 />
@@ -116,19 +132,27 @@ function AddNoteModal({ isOpen, onClose, isEditMode = false, existingNote = null
                     <span className="text-3xl">{emoji || '😀'}</span>
                 </div>
 
-                <div className="flex items-center gap-3 mb-6">
-                    <input
-                        type="color"
-                        className="h-10 w-10 rounded-full border"
-                        value={footerColor}
-                        onChange={(e) => setFooterColor(e.target.value)}
-                    />
-                    <span className="text-sm text-gray-600">Choose footer color</span>
+                <div className="flex items-center gap-4 mb-6">
+                    <label className="text-sm text-gray-600 font-medium min-w-fit">Footer Color:</label>
+                    <div className="relative">
+                        <input
+                            type="color"
+                            className="h-10 w-10 rounded-full border border-gray-300 shadow-sm cursor-pointer transition hover:scale-105"
+                            value={footerColor}
+                            onChange={(e) => setFooterColor(e.target.value)}
+                        />
+                    </div>
+                    <span
+                        className="text-sm text-gray-600"
+                        style={{ color: footerColor }}
+                    >
+                        {footerColor}
+                    </span>
                 </div>
 
                 <div className="flex justify-end gap-4">
                     <button onClick={onClose} className="btn btn-outline">Cancel</button>
-                    <button onClick={handleSubmit} className="btn btn-primary">
+                    <button onClick={handleSubmit} className="btn btn-primary rounded-full">
                         {isEditMode ? "Update" : "Add"}
                     </button>
                 </div>

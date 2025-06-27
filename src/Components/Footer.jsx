@@ -1,3 +1,4 @@
+// ✅ src/components/Footer.jsx
 import React from 'react';
 import { FaPlus, FaArchive, FaArrowLeft, FaMoon, FaSun } from 'react-icons/fa';
 
@@ -8,7 +9,7 @@ function Footer({
     toggleTheme,
     searchTerm,
     setSearchTerm,
-    isDarkMode // optional
+    isDarkMode
 }) {
     return (
         <footer className="fixed bottom-0 left-0 w-full bg-base-200/90 backdrop-blur-md py-4 px-6 z-50 shadow-[0_-4px_10px_rgba(0,0,0,0.15)] border-t border-base-300">

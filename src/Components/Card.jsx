@@ -3,11 +3,12 @@ import { IoFingerPrint } from 'react-icons/io5';
 import { motion } from 'framer-motion';
 import Modal from './Modal';
 import { useDispatch } from 'react-redux';
-import { deleteNote, archiveNote  } from '../features/notes/notesSlice';
+import { deleteNote, archiveNote } from '../features/notes/notesSlice';
 import AddNoteModal from '../features/notes/AddNoteModal';
 import { HiDotsVertical } from 'react-icons/hi';
-// import { archiveNote as unarchiveNote } from '../features/notes/notesSlice';
-import { editNote } from '../features/notes/notesSlice'; // ⚠️ Import correct action
+import { editNote } from '../features/notes/notesSlice';
+import { FaEdit, FaArchive, FaTrash, FaArrowUp } from 'react-icons/fa';
+
 
 
 function Card({ data, reference, isArchivedView }) {
@@ -63,18 +64,55 @@ function Card({ data, reference, isArchivedView }) {
                             </button>
 
                             {menuOpen && (
-                                <ul className="absolute bottom-10 right-0 bg-white text-black rounded shadow w-32 text-sm z-50">
+                                <ul className="absolute bottom-10 right-0 bg-white text-black rounded shadow w-auto text-sm z-50 p-2 flex flex-col gap-2">
                                     {!isArchivedView ? (
                                         <>
-                                            <li className="px-3 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => setEditModalOpen(true)}>Edit</li>
-                                            <li className="px-3 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => dispatch(archiveNote(cardID))}>Archive</li>
+                                            <li>
+                                                <button
+                                                    className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-200"
+                                                    title="Edit"
+                                                    aria-label="Edit"
+                                                    onClick={() => setEditModalOpen(true)}
+                                                >
+                                                    <FaEdit size={18} />
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button
+                                                    className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-200"
+                                                    title="Archive"
+                                                    aria-label="Archive"
+                                                    onClick={() => dispatch(archiveNote(cardID))}
+                                                >
+                                                    <FaArchive size={18} />
+                                                </button>
+                                            </li>
                                         </>
                                     ) : (
-                                        <li className="px-3 py-2 hover:bg-gray-100 cursor-pointer" onClick={handleUnarchive}>Unarchive</li>
+                                        <li>
+                                            <button
+                                                className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-200"
+                                                title="Unarchive"
+                                                aria-label="Unarchive"
+                                                onClick={handleUnarchive}
+                                            >
+                                                <FaArrowUp size={18} />
+                                            </button>
+                                        </li>
                                     )}
-                                    <li className="px-3 py-2 hover:bg-red-100 text-red-600 cursor-pointer" onClick={() => dispatch(deleteNote(cardID))}>Delete</li>
+                                    <li>
+                                        <button
+                                            className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-red-100 text-red-600"
+                                            title="Delete"
+                                            aria-label="Delete"
+                                            onClick={() => dispatch(deleteNote(cardID))}
+                                        >
+                                            <FaTrash size={18} />
+                                        </button>
+                                    </li>
                                 </ul>
                             )}
+
 
 
                         </div>
